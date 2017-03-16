@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+<script src="odeskjobs/angularjs/angular.min.js"></script>
+<script>
+angular.module("Speechrecognition", [])
+    .controller("speech", function ($scope, $http) {
+
+        function getans(text) {
+            $http.post("http://localhost:2300/api/getanswer", {
+                    question: "Hi what is up?"
+                })
+                .
+            then(function (response) {
+                return response.resp;
+            }, function (e) {
+                alert(e);
+            });
+        }
+
+        var recognition;
+
+        $scope.startRecognition = function () {
+		alert('hi');
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onstart = function (event) {};
+
+            recognition.onresult = function (event) {
+                if (recognition) {
+                    recognition.onend = null;
+                }
+
+                var text = "";
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    text += event.results[i][0].transcript;
+                }
+                alert(text);
+                talkit(getans(text));
+                stopRecognition();
+            };
+            recognition.onend = function () {
+                stopRecognition();
+            };
+            recognition.lang = "en-US";
+            recognition.start();
+        };
+
+
+        $scope.stopRecognition = function () {
+            if (recognition) {
+                recognition.stop();
+                recognition = null;
+            }
+        };
+
+        function talkit(txt) {
+            var su = new SpeechSynthesisUtterance();
+            su.lang = "en";
+            su.text = txt;
+            speechSynthesis.speak(su);
+        }
+    });
+
+</script>
+</head>
+
+<body ng-app="Speechrecognition" ng-controller="speech">
+<button ng-click="startRecognition()">Start recognition</button>
+<button ng-click="stopRecognition()">Stop </button>
+
+
+</body>
+</html>

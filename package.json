@@ -1,0 +1,25 @@
+{
+  "name": "speechai",
+  "version": "1.0.0",
+  "description": "Speech AI using Angular express webkit browser",
+  "main": "voicereply.js",
+  "dependencies": {
+	"express" : "*",
+	"body-parser" : "*",
+	"cors" : "*"
+   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node voicereply.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/girish1729/speechai.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/girish1729/speechai/issues"
+  },
+  "homepage": "https://github.com/girish1729/speechai#readme"
+}
