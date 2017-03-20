@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head> 
+    <base href="/">
+     <link href="/public/css/style.css" type="text/css" rel="stylesheet">
+<link
+href='/public/bower_components/font-awesome/css/font-awesome.css'
+rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+href="/public/bower_components/angular-material/angular-material.min.css">
+
+    <script src="/public/bower_components/angular/angular.min.js"></script>
+<script src="/public/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="/public/bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="/public/bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="/public/bower_components/angular-material/angular-material.min.js"></script>
+<script src="/public/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+
+<script
+src="/public/bower_components/angular-resource/angular-resource.js"></script>
+    <script
+src="/public/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/public/js/controller.js"></script>
+     </head>
+<body ng-app="Speechrecognition" ng-controller="speech">
+	<div layout="row" layout-align="center none" ui-view>
+	<md-card>
+	<md-toolbar>
+	<h1> Speech AI (working mic speaker) </h1>
+	</md-toolbar>
+<md-button ng-class="'md-primary md-raised'" ng-click="startRecognition()">Start recognition</md-button>
+<md-button ng-class="'md-primary md-raised'" ng-click="stopRecognition()">Stop </md-button>
+	</md-card>
+</div>
+
+</body>
+
+</html>

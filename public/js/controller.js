@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-<script src="odeskjobs/angularjs/angular.min.js"></script>
-<script>
-angular.module("Speechrecognition", [])
-    .controller("speech", function ($scope, $http) {
+var app = angular.module('Speechrecognition', 
+	['ngResource', 'ngMaterial', 'ngAnimate',
+    'ngAria', 'ngMessages', 'ui.router'
+])
+
+.config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('light-blue')
+            .accentPalette('brown');
+    })
+   .controller("speech", function ($scope, $http) {
 
         function getans(text) {
-            $http.post("http://localhost:2300/api/getanswer", {
-                    question: "Hi what is up?"
+            $http.post("/api/getanswer", {
+                    question: text
                 })
                 .
             then(function (response) {
-                return response.resp;
+                talkreply(response.data.resp);
             }, function (e) {
                 alert(e);
             });
@@ -23,7 +25,6 @@ angular.module("Speechrecognition", [])
         var recognition;
 
         $scope.startRecognition = function () {
-		alert('hi');
             recognition = new webkitSpeechRecognition();
             recognition.continuous = false;
             recognition.interimResults = false;
@@ -39,8 +40,7 @@ angular.module("Speechrecognition", [])
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     text += event.results[i][0].transcript;
                 }
-                alert(text);
-                talkit(getans(text));
+                getans(text);
                 stopRecognition();
             };
             recognition.onend = function () {
@@ -58,21 +58,10 @@ angular.module("Speechrecognition", [])
             }
         };
 
-        function talkit(txt) {
+        function talkreply(txt) {
             var su = new SpeechSynthesisUtterance();
             su.lang = "en";
             su.text = txt;
             speechSynthesis.speak(su);
         }
     });
-
-</script>
-</head>
-
-<body ng-app="Speechrecognition" ng-controller="speech">
-<button ng-click="startRecognition()">Start recognition</button>
-<button ng-click="stopRecognition()">Stop </button>
-
-
-</body>
-</html>

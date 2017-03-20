@@ -21,6 +21,25 @@ There is also a server  to simulate an AI replying automaton.
 You could simply build a lookup table of strings and return something
 based on a pattern match. Possibilities are endless of course.
 
+Usage
+========
+
+```
+
+$ npm install
+$ cd public
+$ bower install
+$ npm start
+
+```
+
+Go to [http://localhost;2300](http://localhost:2300/)
+
+
+Screenshot
+========
+![shot](https://cloud.githubusercontent.com/assets/6890469/24097997/67dee8f6-0d8e-11e7-81bc-4e5c166c8429.png)
+
 
 Contact
 =======
